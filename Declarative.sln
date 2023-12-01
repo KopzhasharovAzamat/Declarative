@@ -13,15 +13,14 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BLL", "BLL\BLL.csproj", "{E930C2C8-F68C-449D-AAB7-5BB57820788E}"
 	ProjectSection(ProjectDependencies) = postProject
 		{99A8C4CD-9E0F-4E7C-B82D-79E5EF6CDF32} = {99A8C4CD-9E0F-4E7C-B82D-79E5EF6CDF32}
-		{E3C23F14-E667-443A-93CE-871252AAD123} = {E3C23F14-E667-443A-93CE-871252AAD123}
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{E3C23F14-E667-443A-93CE-871252AAD123}"
+	ProjectSection(ProjectDependencies) = postProject
+		{E930C2C8-F68C-449D-AAB7-5BB57820788E} = {E930C2C8-F68C-449D-AAB7-5BB57820788E}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{99A8C4CD-9E0F-4E7C-B82D-79E5EF6CDF32}"
-	ProjectSection(ProjectDependencies) = postProject
-		{E3C23F14-E667-443A-93CE-871252AAD123} = {E3C23F14-E667-443A-93CE-871252AAD123}
-	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

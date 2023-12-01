@@ -10,7 +10,7 @@ namespace BLL.Services
     {
         public HomeService() 
         {
-
+            return;
         }
 
         public void Get(string id)
