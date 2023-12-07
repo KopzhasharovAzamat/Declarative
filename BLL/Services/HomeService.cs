@@ -1,16 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using DAL.Entities;
+using DAL.Interfaces;
 
 namespace BLL.Services
 {
     public class HomeService : IHomeService
     {
-        public HomeService() 
+        private readonly IRepository<Company> _companyRepository;
+        public HomeService(IRepository<Company> companyRepository)
         {
-            return;
+            _companyRepository = companyRepository;
         }
 
         public void Get(string id)

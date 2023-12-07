@@ -1,4 +1,4 @@
-﻿namespace ClassLibrary1
+﻿namespace PL2
 {
     public class Class1
     {

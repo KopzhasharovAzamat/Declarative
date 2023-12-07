@@ -1,26 +1,27 @@
-﻿using DAL.Entities;
+﻿using Declarative.DAL.Entities;
 using System.Data.Entity;
 
-namespace DAL.EntityFramework
+
+namespace Declarative.DAL.EntityFramework
 {
-    public class context : DbContext
+    public class AppDbContext : DbContext
     {
         public DbSet<Employee> Employees { get; set; }
         public DbSet<ProjectTask> ProjectTasks { get; set; }
         public DbSet<ProjectLeader> ProjectLeaders { get; set; }
         public DbSet<Project> Projects { get; set; }
         public DbSet<Company> Companies { get; set; }
-        static context()
+        static AppDbContext()
         {
-            Database.SetInitializer<context>(new StoreDbInitializer());
+            Database.SetInitializer<AppDbContext>(new StoreDbInitializer());
         }
-        public context(string connectionString) : base(connectionString)
+        public AppDbContext(string connectionString) : base(connectionString)
         {
         }
     }
-    public class StoreDbInitializer : DropCreateDatabaseIfModelChanges<context>
+    public class StoreDbInitializer : DropCreateDatabaseIfModelChanges<AppDbContext>
     {
-        protected override void Seed(context db)
+        protected override void Seed(AppDbContext db)
         {
             db.Employees.Add(new Employee
             {

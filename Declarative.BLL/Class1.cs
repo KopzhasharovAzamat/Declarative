@@ -1,4 +1,4 @@
-﻿namespace ClassLibrary1
+﻿namespace Declarative.BLL
 {
     public class Class1
     {

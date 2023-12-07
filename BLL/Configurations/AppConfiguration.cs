@@ -1,11 +1,8 @@
 ﻿using BLL.Services;
+using DAL.Entities;
+using DAL.Interfaces;
+using DAL.Repositories;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.Design;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BLL.Configurations
 {
@@ -13,7 +10,11 @@ namespace BLL.Configurations
     {
         public static void AddServices(this IServiceCollection service)
         {
+            //services
             service.AddTransient<IHomeService, HomeService>();
+
+            //repositories
+            service.AddTransient<IRepository<Company>, CompanyRepository>();
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace ClassLibrary1
+﻿namespace Declarative.Common
 {
     public class Class1
     {
