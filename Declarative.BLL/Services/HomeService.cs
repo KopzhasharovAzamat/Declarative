@@ -6,30 +6,31 @@ namespace Declarative.BLL.Services
 {
     public class HomeService : IHomeService
     {
-        private readonly IRepository<Employee> _employeeRepository;
-        private readonly IRepository<Project> _projectRepository;
-        private readonly IRepository<ProjectTask> _projectTaskRepository;
-        private readonly IRepository<ProjectLeader> _projectLeaderRepository;
-        private readonly IRepository<Company> _companyRepository;
-        public HomeService(IRepository<Company> companyRepository)
-        {
-            _companyRepository = companyRepository;
-        }
-        public HomeService(IRepository<Employee> employeeRepository)
+        private readonly IEmployeeRepository<Employee> _employeeRepository;
+        private readonly IProjectRepository<Project> _projectRepository;
+        private readonly IProjectTaskRepository<ProjectTask> _projectTaskRepository;
+        private readonly IProjectLeaderRepository<ProjectLeader> _projectLeaderRepository;
+        private readonly ICompanyRepository<Company> _companyRepository;
+        public HomeService(IEmployeeRepository<Employee> employeeRepository)
         {
             _employeeRepository = employeeRepository;
         }
-        public HomeService(IRepository<Project> projectRepository)
+        public HomeService(IProjectRepository<Project> projectRepository)
         {
             _projectRepository = projectRepository;
         }
-        public HomeService(IRepository<ProjectLeader> projectLeaderRepository)
+        public HomeService(IProjectTaskRepository<ProjectTask> projectTaskRepository)
+        {
+            _projectTaskRepository = projectTaskRepository;
+        }
+        public HomeService(IProjectLeaderRepository<ProjectLeader> projectLeaderRepository)
         {
             _projectLeaderRepository = projectLeaderRepository;
         }
-        public HomeService(IRepository<ProjectTask> projectTaskRepository)
+        
+        public HomeService(ICompanyRepository<Company> companyRepository)
         {
-            _projectTaskRepository = projectTaskRepository;
+            _companyRepository = companyRepository;
         }
 
         public void Get(string id)

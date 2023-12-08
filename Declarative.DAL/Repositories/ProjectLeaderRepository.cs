@@ -5,43 +5,43 @@ using System.Data.Entity;
 
 namespace Declarative.DAL.Repositories
 {
-    public class ProjectLeaderRepository : IRepository<ProjectLeader>
+    public class ProjectLeaderRepository : IProjectLeaderRepository<ProjectLeader>
     {
-        private readonly AppDbContext db;
+        private readonly AppDbContext context;
         public ProjectLeaderRepository(AppDbContext context) 
         {
-            this.db = context;
+            this.context = context;
         }
         public IEnumerable<ProjectLeader> GetAll()
         {
-            return db.ProjectLeaders;
+            return context.ProjectLeaders;
         }
 
         public ProjectLeader Get(int id)
         {
-            return db.ProjectLeaders.Find(id);
+            return context.ProjectLeaders.Find(id);
         }
 
         public void Create(ProjectLeader book)
         {
-            db.ProjectLeaders.Add(book);
+            context.ProjectLeaders.Add(book);
         }
 
         public void Update(ProjectLeader book)
         {
-            db.Entry(book).State = EntityState.Modified;
+            context.Entry(book).State = EntityState.Modified;
         }
 
         public IEnumerable<ProjectLeader> Find(Func<ProjectLeader, Boolean> predicate)
         {
-            return db.ProjectLeaders.Where(predicate).ToList();
+            return context.ProjectLeaders.Where(predicate).ToList();
         }
 
         public void Delete(int id)
         {
-            ProjectLeader book = db.ProjectLeaders.Find(id);
+            ProjectLeader book = context.ProjectLeaders.Find(id);
             if (book != null)
-                db.ProjectLeaders.Remove(book);
+                context.ProjectLeaders.Remove(book);
         }
 
         public ProjectLeader GetValue(int id)

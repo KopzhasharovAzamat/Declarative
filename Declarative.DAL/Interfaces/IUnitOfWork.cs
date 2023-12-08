@@ -4,11 +4,11 @@ namespace Declarative.DAL.Interfaces
 {
     public interface IUnitOfWork : IDisposable
     {
-        IRepository<Employee> Employees { get; }
-        IRepository<ProjectTask> ProjectTasks { get; }
-        IRepository<ProjectLeader> ProjectLeaders { get; }
-        IRepository<Project> Projects { get; }
-        IRepository<Company> Companies { get; }
+        IEmployeeRepository<Employee> Employees { get; }
+        IProjectTaskRepository<ProjectTask> ProjectTasks { get; }
+        IProjectLeaderRepository<ProjectLeader> ProjectLeaders { get; }
+        IProjectRepository<Project> Projects { get; }
+        ICompanyRepository<Company> Companies { get; }
         void Save();
     }
 }

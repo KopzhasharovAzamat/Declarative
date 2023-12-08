@@ -1,5 +1,6 @@
 ﻿using Declarative.DAL.Entities;
 using System.Data.Entity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 
 namespace Declarative.DAL.EntityFramework
@@ -18,6 +19,8 @@ namespace Declarative.DAL.EntityFramework
         public AppDbContext(string connectionString) : base(connectionString)
         {
         }
+
+
     }
     public class StoreDbInitializer : DropCreateDatabaseIfModelChanges<AppDbContext>
     {

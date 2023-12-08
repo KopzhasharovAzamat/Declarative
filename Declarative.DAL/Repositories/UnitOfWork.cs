@@ -4,86 +4,81 @@ using Declarative.DAL.Interfaces;
 
 namespace Declarative.DAL.Repositories
 {
-    public class EFUnitOfWork : IUnitOfWork
+    public class UnitOfWork : IUnitOfWork
     {
-        private AppDbContext db;
+        private readonly AppDbContext context;
         private EmployeeRepository employeeRepository;
         private ProjectTaskRepository projectTaskRepository;
         private ProjectLeaderRepository projectLeaderRepository;
         private ProjectRepository projectRepository;
         private CompanyRepository companyRepository;
 
-
-        public EFUnitOfWork(string connectionString)
+        public UnitOfWork(AppDbContext context)
         {
-            db = new AppDbContext(connectionString);
+            this.context = context;
         }
-        public IRepository<Employee> Employees
+        public IEmployeeRepository<Employee> Employees
         {
             get
             {
                 if (employeeRepository == null)
-                    employeeRepository = new EmployeeRepository(db);
+                    employeeRepository = new EmployeeRepository(context);
                 return employeeRepository;
             }
         }
 
-        public IRepository<ProjectTask> ProjectTasks
+        public IProjectTaskRepository<ProjectTask> ProjectTasks
         {
             get
             {
                 if (projectTaskRepository == null)
-                    projectTaskRepository = new ProjectTaskRepository(db);
+                    projectTaskRepository = new ProjectTaskRepository(context);
                 return projectTaskRepository;
             }
         }
-        public IRepository<ProjectLeader> ProjectLeaders
+        public IProjectLeaderRepository<ProjectLeader> ProjectLeaders
         {
             get
             {
                 if (projectLeaderRepository == null)
-                    projectLeaderRepository = new ProjectLeaderRepository(db);
+                    projectLeaderRepository = new ProjectLeaderRepository(context);
                 return projectLeaderRepository;
             }
         }
-        public IRepository<Project> Projects
+        public IProjectRepository<Project> Projects
         {
             get
             {
                 if (projectRepository == null)
-                    projectRepository = new ProjectRepository(db);
+                    projectRepository = new ProjectRepository(context);
                 return projectRepository;
             }
         }
-        public IRepository<Company> Companies
+        public ICompanyRepository<Company> Companies
         {
             get
             {
                 if (companyRepository == null)
-                    companyRepository = new CompanyRepository(db);
+                    companyRepository = new CompanyRepository(context);
                 return companyRepository;
             }
         }
-
         public void Save()
         {
-            db.SaveChanges();
+            context.SaveChanges();
         }
-
         private bool disposed = false;
-
         public virtual void Dispose(bool disposing)
         {
             if (!this.disposed)
             {
                 if (disposing)
                 {
-                    db.Dispose();
+                    context.Dispose();
                 }
                 this.disposed = true;
             }
         }
-
         public void Dispose()
         {
             Dispose(true);

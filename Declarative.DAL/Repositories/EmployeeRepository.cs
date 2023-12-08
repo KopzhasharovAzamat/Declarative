@@ -5,43 +5,43 @@ using System.Data.Entity;
 
 namespace Declarative.DAL.Repositories
 {
-    public class EmployeeRepository : IRepository<Employee>
+    public class EmployeeRepository : IEmployeeRepository<Employee>
     {
-        private readonly AppDbContext db;
+        private readonly AppDbContext context;
         public EmployeeRepository(AppDbContext context) 
         {
-            this.db = context;
+            this.context = context;
         }
         public IEnumerable<Employee> GetAll()
         {
-            return db.Employees;
+            return context.Employees;
         }
 
         public Employee Get(int id)
         {
-            return db.Employees.Find(id);
+            return context.Employees.Find(id);
         }
 
         public void Create(Employee book)
         {
-            db.Employees.Add(book);
+            context.Employees.Add(book);
         }
 
         public void Update(Employee book)
         {
-            db.Entry(book).State = EntityState.Modified;
+            context.Entry(book).State = EntityState.Modified;
         }
 
         public IEnumerable<Employee> Find(Func<Employee, Boolean> predicate)
         {
-            return db.Employees.Where(predicate).ToList();
+            return context.Employees.Where(predicate).ToList();
         }
 
         public void Delete(int id)
         {
-            Employee book = db.Employees.Find(id);
+            Employee book = context.Employees.Find(id);
             if (book != null)
-                db.Employees.Remove(book);
+                context.Employees.Remove(book);
         }
 
         public Employee GetValue(int id)
