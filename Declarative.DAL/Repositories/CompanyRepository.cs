@@ -30,7 +30,7 @@ namespace Declarative.DAL.Repositories
 
         public void Update(Company book)
         {
-            context.Entry(book).State = System.Data.Entity.EntityState.Modified;
+            //context.Entry(book).State = System.Data.Entity.EntityState.Modified;
         }
 
         public IEnumerable<Company> Find(Func<Company, Boolean> predicate)

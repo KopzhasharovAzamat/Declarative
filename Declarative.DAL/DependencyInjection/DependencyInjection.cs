@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Declarative.DAL.Repositories;
 using Declarative.DAL.Interfaces;
+using Declarative.DAL.Entities;
 
 namespace Declarative.DAL.DependencyInjection
 {
@@ -8,11 +9,11 @@ namespace Declarative.DAL.DependencyInjection
     {
         public static IServiceCollection AddRepository(this IServiceCollection services)
         {
-            services.AddTransient<IEmployeeRepository, EmployeeRepository>();
-            services.AddTransient<IProjectRepository, ProjectRepository>();
-            services.AddTransient<IProjectTaskRepository, ProjectTaskRepository>();
-            services.AddTransient<IProjectLeaderRepository, ProjectLeaderRepository>();
-            services.AddTransient<ICompanyRepository, CompanyRepository>();
+            services.AddTransient<IEmployeeRepository<Employee>, EmployeeRepository>();
+            services.AddTransient<IProjectRepository<Project>, ProjectRepository>();
+            services.AddTransient<IProjectTaskRepository<ProjectTask>, ProjectTaskRepository>();
+            services.AddTransient<IProjectLeaderRepository<ProjectLeader>, ProjectLeaderRepository>();
+            services.AddTransient<ICompanyRepository<Company>, CompanyRepository>();
             services.AddTransient<IUnitOfWork, UnitOfWork>();
 
             return services;

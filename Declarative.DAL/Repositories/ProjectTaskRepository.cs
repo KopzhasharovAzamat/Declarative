@@ -29,10 +29,10 @@ namespace Declarative.DAL.Repositories
         {
             context.ProjectTasks.Add(ProjectTask);
         }
- 
+
         public void Update(ProjectTask ProjectTask)
         {
-            context.Entry(ProjectTask).State = EntityState.Modified;
+            //context.Entry(ProjectTask).State = EntityState.Modified;
         }
         public void Delete(int id)
         {

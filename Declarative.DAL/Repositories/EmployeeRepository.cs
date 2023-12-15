@@ -29,7 +29,7 @@ namespace Declarative.DAL.Repositories
 
         public void Update(Employee book)
         {
-            context.Entry(book).State = EntityState.Modified;
+            //context.Entry(book).State = EntityState.Modified;
         }
 
         public IEnumerable<Employee> Find(Func<Employee, Boolean> predicate)

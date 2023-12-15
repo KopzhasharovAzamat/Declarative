@@ -1,7 +1,6 @@
 ﻿using Declarative.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
-using BLL.Services;
 
 
 namespace Declarative.Controllers
@@ -9,7 +8,7 @@ namespace Declarative.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly IHomeService _homeService;
+        // private readonly IHomeService _homeService;
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
