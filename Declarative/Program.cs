@@ -1,4 +1,5 @@
 using Declarative.BLL.Configurations;
+using Declarative.DAL.EntityFramework;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -6,6 +7,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddServices();
+builder.Services.AddSwaggerGen();
+builder.Services.AddDbContext<AppDbContext>();
 
 var app = builder.Build();
 
@@ -21,6 +24,8 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
+app.UseSwagger();
+app.UseSwaggerUI();
 app.UseRouting();
 
 app.UseAuthorization();

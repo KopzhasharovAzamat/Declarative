@@ -14,44 +14,30 @@ namespace Declarative.DAL.Repositories
         }
         public IEnumerable<ProjectLeader> GetAll()
         {
-            return context.ProjectLeaders;
+            return context.ProjectLeaders.ToList();
         }
-
-        public ProjectLeader Get(int id)
+        public ProjectLeader GetById(int id)
         {
             return context.ProjectLeaders.Find(id);
         }
-
-        public void Create(ProjectLeader book)
+        public void Create(ProjectLeader projectLeader)
         {
-            context.ProjectLeaders.Add(book);
+            context.ProjectLeaders.Add(projectLeader);
+            context.SaveChanges();
         }
-
-        public void Update(ProjectLeader book)
+        public void Update(ProjectLeader projectLeader)
         {
-            //context.Entry(book).State = EntityState.Modified;
+            context.ProjectLeaders.Update(projectLeader);
+            context.SaveChanges();
         }
-
-        public IEnumerable<ProjectLeader> Find(Func<ProjectLeader, Boolean> predicate)
-        {
-            return context.ProjectLeaders.Where(predicate).ToList();
-        }
-
         public void Delete(int id)
         {
-            ProjectLeader book = context.ProjectLeaders.Find(id);
-            if (book != null)
-                context.ProjectLeaders.Remove(book);
-        }
-
-        public ProjectLeader GetValue(int id)
-        {
-            throw new NotImplementedException(); // error
-        }
-
-        public void Delete(ProjectLeader item)
-        {
-            throw new NotImplementedException(); // error
+            ProjectLeader projectLeader = context.ProjectLeaders.Find(id);
+            if (projectLeader != null)
+            {
+                context.ProjectLeaders.Remove(projectLeader);
+                context.SaveChanges();
+            }
         }
     }
 }

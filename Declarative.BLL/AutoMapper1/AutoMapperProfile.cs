@@ -1,4 +1,7 @@
 ﻿using AutoMapper;
+using Declarative.Api.Models.Employee;
+using Declarative.DAL.Entities;
+using System;
 
 
 namespace Declarative.BLL.AutoMapper1
@@ -8,6 +11,7 @@ namespace Declarative.BLL.AutoMapper1
     {
         public AutoMapperProfile()
         {
+            CreateMap<Employee, EmployeeViewModel>();
         }
     }
 }

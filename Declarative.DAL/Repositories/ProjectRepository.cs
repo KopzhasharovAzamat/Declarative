@@ -1,7 +1,6 @@
 ﻿using Declarative.DAL.Entities;
 using Declarative.DAL.EntityFramework;
 using Declarative.DAL.Interfaces;
-using System.Data.Entity;
 
 namespace Declarative.DAL.Repositories
 {
@@ -14,44 +13,30 @@ namespace Declarative.DAL.Repositories
         }
         public IEnumerable<Project> GetAll()
         {
-            return context.Projects;
+            return context.Projects.ToList();
         }
-
-        public Project Get(int id)
+        public Project GetById(int id)
         {
             return context.Projects.Find(id);
         }
-
-        public void Create(Project book)
+        public void Create(Project project)
         {
-            context.Projects.Add(book);
+            context.Projects.Add(project);
+            context.SaveChanges();
         }
-
-        public void Update(Project book)
+        public void Update(Project project)
         {
-            //context.Entry(book).State = EntityState.Modified;
+            context.Projects.Update(project);
+            context.SaveChanges();
         }
-
-        public IEnumerable<Project> Find(Func<Project, Boolean> predicate)
-        {
-            return context.Projects.Where(predicate).ToList();
-        }
-
         public void Delete(int id)
         {
-            Project book = context.Projects.Find(id);
-            if (book != null)
-                context.Projects.Remove(book);
-        }
-
-        public Project GetValue(int id)
-        {
-            throw new NotImplementedException(); // error
-        }
-
-        public void Delete(Project item)
-        {
-            throw new NotImplementedException(); // error
+            Project project = context.Projects.Find(id);
+            if (project != null)
+            {
+                context.Projects.Remove(project);
+                context.SaveChanges();
+            }
         }
     }
 }

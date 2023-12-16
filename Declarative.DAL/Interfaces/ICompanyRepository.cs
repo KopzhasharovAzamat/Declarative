@@ -1,18 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Declarative.DAL.Interfaces
+﻿namespace Declarative.DAL.Interfaces
 {
     public interface ICompanyRepository<T> where T : class
     {
         IEnumerable<T> GetAll();
-        T GetValue(int id);
-        IEnumerable<T> Find(Func<T, bool> predicate);
+        T GetById(int id);
         void Create(T item);
         void Update(T item);
-        void Delete(T item);
+        void Delete(int id);
     }
 }

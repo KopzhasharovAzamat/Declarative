@@ -1,8 +1,6 @@
 ﻿using Declarative.DAL.Entities;
 using Declarative.DAL.EntityFramework;
 using Declarative.DAL.Interfaces;
-using Microsoft.EntityFrameworkCore;
-using System.Data.Entity;
 
 namespace Declarative.DAL.Repositories
 {
@@ -15,44 +13,31 @@ namespace Declarative.DAL.Repositories
         }
         public IEnumerable<Company> GetAll()
         {
-            return context.Companies;
+            return context.Companies.ToList();
         }
-
-        public Company Get(int id)
+        public Company GetById(int id)
         {
             return context.Companies.Find(id);
         }
-
-        public void Create(Company book)
+        public void Create(Company company)
         {
-            context.Companies.Add(book);
+            context.Companies.Add(company);
+            context.SaveChanges();
         }
-
-        public void Update(Company book)
+        public void Update(Company company)
         {
-            //context.Entry(book).State = System.Data.Entity.EntityState.Modified;
+            context.Companies.Update(company);
+            context.SaveChanges();
         }
-
-        public IEnumerable<Company> Find(Func<Company, Boolean> predicate)
-        {
-            return context.Companies.Where(predicate).ToList();
-        }
-
         public void Delete(int id)
         {
-            Company book = context.Companies.Find(id);
-            if (book != null)
-                context.Companies.Remove(book);
+            Company company = context.Companies.Find(id);
+            if (company != null)
+            {
+                context.Companies.Remove(company);
+                context.SaveChanges();
+            }
         }
 
-        public Company GetValue(int id)
-        {
-            throw new NotImplementedException(); // error
-        }
-
-        public void Delete(Company item)
-        {
-            throw new NotImplementedException(); // error
-        }
     }
 }

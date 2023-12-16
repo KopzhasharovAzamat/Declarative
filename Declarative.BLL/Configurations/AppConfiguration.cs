@@ -1,4 +1,5 @@
-﻿using Declarative.BLL.Services;
+﻿using Declarative.BLL.AutoMapper1;
+using Declarative.BLL.Services;
 using Declarative.BLL.Services.Interfaces;
 using Declarative.DAL.Entities;
 using Declarative.DAL.Interfaces;
@@ -12,7 +13,12 @@ namespace Declarative.BLL.Configurations
         public static void AddServices(this IServiceCollection service)
         {
             //services
-            service.AddTransient<IHomeService, HomeService>();
+            service.AddTransient<ICompanyService, CompanyService>();   
+            service.AddTransient<IEmployeeService, EmployeeService>();
+            service.AddTransient<IProjectService, ProjectService>();
+            service.AddTransient<IProjectLeaderService, ProjectLeaderService>();
+            service.AddTransient<IProjectTaskService, ProjectTaskService>();
+          //  service.AddAutoMapper(typeof(AutoMapperProfile));
             //repositories
             service.AddTransient<IEmployeeRepository<Employee>, EmployeeRepository>();
             service.AddTransient<IProjectRepository<Project>, ProjectRepository>();

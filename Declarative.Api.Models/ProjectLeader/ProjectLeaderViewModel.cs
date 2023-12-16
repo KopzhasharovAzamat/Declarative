@@ -1,11 +1,12 @@
-﻿namespace Declarative.Api.Models.Company
+﻿namespace Declarative.Api.Models.ProjectLeader
 {
-    public class CompanyViewModel
+    public class ProjectLeaderViewModel
     {
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public int EmployeeId { get; set; }
+        public string Email { get; set; }
+        public int Position { get; set; }
         public int ProjectId { get; set; }
     }
 }

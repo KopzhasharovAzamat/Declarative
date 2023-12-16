@@ -13,7 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Declarative.DAL\Declarative.DAL.csproj" />
-	  <ProjectReference Include="..\Declarative.Api.Models\Declarative.Api.Models.csproj"/>
+	  <ProjectReference Include="..\Declarative.Api.Models\Declarative.Api.Models.csproj" />
   </ItemGroup>
 
 </Project>

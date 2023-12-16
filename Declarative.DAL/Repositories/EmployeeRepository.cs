@@ -1,7 +1,6 @@
 ﻿using Declarative.DAL.Entities;
 using Declarative.DAL.EntityFramework;
 using Declarative.DAL.Interfaces;
-using System.Data.Entity;
 
 namespace Declarative.DAL.Repositories
 {
@@ -14,44 +13,30 @@ namespace Declarative.DAL.Repositories
         }
         public IEnumerable<Employee> GetAll()
         {
-            return context.Employees;
+            return context.Employees.ToList();
         }
-
-        public Employee Get(int id)
+        public Employee GetById(int id)
         {
             return context.Employees.Find(id);
         }
-
-        public void Create(Employee book)
+        public void Create(Employee employee)
         {
-            context.Employees.Add(book);
+            context.Employees.Add(employee);
+            context.SaveChanges();
         }
-
-        public void Update(Employee book)
+        public void Update(Employee employee)
         {
-            //context.Entry(book).State = EntityState.Modified;
+            context.Employees.Update(employee);
+            context.SaveChanges();
         }
-
-        public IEnumerable<Employee> Find(Func<Employee, Boolean> predicate)
-        {
-            return context.Employees.Where(predicate).ToList();
-        }
-
         public void Delete(int id)
         {
-            Employee book = context.Employees.Find(id);
-            if (book != null)
-                context.Employees.Remove(book);
-        }
-
-        public Employee GetValue(int id)
-        {
-            throw new NotImplementedException(); // error
-        }
-
-        public void Delete(Employee item)
-        {
-            throw new NotImplementedException(); // error
+            Employee employee = context.Employees.Find(id);
+            if (employee != null)
+            {
+                context.Employees.Remove(employee);
+                context.SaveChanges();
+            }
         }
     }
 }

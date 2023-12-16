@@ -12,42 +12,32 @@ namespace Declarative.DAL.Repositories
         { 
             this.context = context;
         }
-
-        public IEnumerable<ProjectTask> GetAll() { return context.ProjectTasks; }
-
-        public IEnumerable<ProjectTask> Find(Func<ProjectTask, Boolean> predicate)
+        public IEnumerable<ProjectTask> GetAll()
         {
-            return context.ProjectTasks.Where(predicate).ToList();
+            return context.ProjectTasks.ToList();
         }
-
-        public ProjectTask Get(int id)
+        public ProjectTask GetById(int id)
         {
             return context.ProjectTasks.Find(id);
         }
- 
-        public void Create(ProjectTask ProjectTask)
+        public void Create(ProjectTask projectTask)
         {
-            context.ProjectTasks.Add(ProjectTask);
+            context.ProjectTasks.Add(projectTask);
+            context.SaveChanges();
         }
-
-        public void Update(ProjectTask ProjectTask)
+        public void Update(ProjectTask projectTask)
         {
-            //context.Entry(ProjectTask).State = EntityState.Modified;
+            context.ProjectTasks.Update(projectTask);
+            context.SaveChanges();
         }
         public void Delete(int id)
         {
-            ProjectTask ProjectTask = context.ProjectTasks.Find(id);
-            if (ProjectTask != null)
-                context.ProjectTasks.Remove(ProjectTask);
-        }
-        public ProjectTask GetValue(int id)
-        {
-            throw new NotImplementedException(); // error
-        }
-
-        public void Delete(ProjectTask item)
-        {
-            throw new NotImplementedException(); // error
+            ProjectTask projectTask = context.ProjectTasks.Find(id);
+            if (projectTask != null)
+            {
+                context.ProjectTasks.Remove(projectTask);
+                context.SaveChanges();
+            }
         }
     }
 }
