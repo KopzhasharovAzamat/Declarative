@@ -1,4 +1,5 @@
-﻿using Declarative.Api.Models.Employee;
+﻿using AutoMapper;
+using Declarative.Api.Models.Employee;
 using Declarative.BLL.Services.Interfaces;
 using Declarative.DAL.Entities;
 using Declarative.DAL.Interfaces;
@@ -9,9 +10,11 @@ namespace Declarative.BLL.Services
     public class EmployeeService : IEmployeeService
     {
         private readonly IEmployeeRepository<Employee> _employeeRepository;
-        public EmployeeService(IEmployeeRepository<Employee> employeeRepository)
+        private readonly IMapper _mapper;
+        public EmployeeService(IEmployeeRepository<Employee> employeeRepository, IMapper mapper)
         {
             _employeeRepository = employeeRepository;
+            _mapper = mapper;
         }
         public IEnumerable<EmployeeViewModel> GetAll()
         {
@@ -44,12 +47,12 @@ namespace Declarative.BLL.Services
         }
         public void Create(EmployeeAddModel employee)
         {
-            var employeeEntity = new Employee { FirstName = employee.FirstName, LastName = employee.LastName };
+            var employeeEntity = _mapper.Map<Employee>(employee);
             _employeeRepository.Create(employeeEntity);
         }
         public void Update(EmployeeEditModel employee)
         {
-            var employeeEntity = new Employee { FirstName = employee.FirstName, LastName = employee.LastName };
+            var employeeEntity = _mapper.Map<Employee>(employee);
             _employeeRepository.Update(employeeEntity);
         }
         public void Delete(int id)

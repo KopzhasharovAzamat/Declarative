@@ -9,6 +9,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddServices();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<AppDbContext>();
+builder.Services.AddAutoMapper(typeof(AppDbContext));
 
 var app = builder.Build();
 

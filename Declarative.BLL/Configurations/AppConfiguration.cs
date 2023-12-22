@@ -18,7 +18,14 @@ namespace Declarative.BLL.Configurations
             service.AddTransient<IProjectService, ProjectService>();
             service.AddTransient<IProjectLeaderService, ProjectLeaderService>();
             service.AddTransient<IProjectTaskService, ProjectTaskService>();
-          //  service.AddAutoMapper(typeof(AutoMapperProfile));
+            // service.AddAutoMapper(typeof(AutoMapperProfile));
+
+            service.AddScoped<ICompanyService, CompanyService>();
+            service.AddScoped<IEmployeeService, EmployeeService>();
+            service.AddScoped<IProjectLeaderService, ProjectLeaderService>();
+            service.AddScoped<IProjectService, ProjectService>();
+            service.AddScoped<IProjectTaskService, ProjectTaskService>();
+
             //repositories
             service.AddTransient<IEmployeeRepository<Employee>, EmployeeRepository>();
             service.AddTransient<IProjectRepository<Project>, ProjectRepository>();

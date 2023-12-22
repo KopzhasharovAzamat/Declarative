@@ -1,7 +1,5 @@
 ﻿using Declarative.Api.Models.Company;
 using Declarative.BLL.Services.Interfaces;
-using Declarative.DAL.Entities;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Declarative.API
@@ -11,18 +9,74 @@ namespace Declarative.API
     public class CompanyController : ControllerBase
     {
         private readonly ICompanyService _companyService;
-
         public CompanyController(ICompanyService companyService)
         {
             _companyService = companyService;
         }
 
         [HttpGet]
-        public IEnumerable<CompanyViewModel> Get()
+        public ActionResult<IEnumerable<CompanyViewModel>> GetAll()
         {
             var companies = _companyService.GetAll();
-            return companies;
+            return Ok(companies);
         }
-        
+        [HttpGet("{id}")]
+        public ActionResult<CompanyViewModel> GetById(int id)
+        {
+            var company = _companyService.GetById(id);
+
+            if (company == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(company);
+        }
+
+        [HttpPost]
+        public ActionResult Create([FromBody] CompanyAddModel company)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            _companyService.Create(company);
+
+            return CreatedAtAction(nameof(GetById), new { id = company.Id }, company);
+        }
+
+        [HttpPut("{id}")]
+        public ActionResult Update(int id, [FromBody] CompanyEditModel company)
+        {
+            if (!ModelState.IsValid || id != company.Id)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var existingCompany = _companyService.GetById(id);
+            if (existingCompany == null)
+            {
+                return NotFound();
+            }
+
+            _companyService.Update(company);
+
+            return NoContent();
+        }
+
+        [HttpDelete("{id}")]
+        public ActionResult Delete(int id)
+        {
+            var existingCompany = _companyService.GetById(id);
+            if (existingCompany == null)
+            {
+                return NotFound();
+            }
+
+            _companyService.Delete(id);
+
+            return NoContent();
+        }
     }
 }

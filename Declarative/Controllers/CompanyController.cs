@@ -61,36 +61,5 @@ namespace Declarative.Controllers
             }
             return View(company);
         }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult Edit(CompanyEditModel company)
-        {
-            if (ModelState.IsValid)
-            {
-                var companyEntity = new Company();
-                _companyService.Update(companyEntity);
-                return RedirectToAction("Index");
-            }
-            return View(company);
-        }
-
-        [HttpGet]
-        public IActionResult Delete(int id)
-        {
-            var company = _companyService.GetById(id);
-            if (company == null)
-            {
-                return NotFound();
-            }
-            return View(company);
-        }
-
-        [HttpPost, ActionName("Delete")]
-        public IActionResult DeleteConfirmed(int id)
-        {
-            _companyService.Delete(id);
-            return RedirectToAction("Index");
-        }
     }
 }
